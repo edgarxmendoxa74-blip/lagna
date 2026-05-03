@@ -49,7 +49,7 @@ const Contact = () => {
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto' }}>We'd love to hear from you! Visit us or reach out through any of the channels below.</p>
                 </div>
 
-                <div className="contact-details-centered" style={{ maxWidth: '600px', margin: '0 auto 100px', display: 'flex', flexDirection: 'column', gap: '32px' }} className="fade-in-up">
+                <div className="contact-details-centered fade-in-up" style={{ maxWidth: '600px', margin: '0 auto 100px', display: 'flex', flexDirection: 'column', gap: '32px' }}>
                     <div className="contact-card" style={{ background: 'var(--white)', padding: '48px 40px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', textAlign: 'center', transition: 'var(--transition)', color: 'var(--text)', boxShadow: 'var(--shadow-md)' }}>
                         <div style={{ background: 'var(--bg-dark)', width: '64px', height: '64px', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px', color: 'var(--primary)' }}>
                             <MapPin size={32} />
