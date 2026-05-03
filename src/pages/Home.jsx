@@ -59,7 +59,7 @@ const normalizeItems = (items) => {
 };
 
 // Memoized menu item component
-const MenuItem = React.memo(({ item, isOpen, openProductSelection }) => (
+const MenuItem = React.memo(({ item, isOpen, onAddToCart }) => (
     <div className="menu-item-card fade-in-up" style={{ opacity: item.out_of_stock ? 0.6 : 1 }}>
         <div className="menu-item-image-wrapper">
             <img src={item.image} alt={item.name} className="menu-item-image" />
@@ -83,7 +83,7 @@ const MenuItem = React.memo(({ item, isOpen, openProductSelection }) => (
                 <button
                     className="btn-primary"
                     disabled={item.out_of_stock || !isOpen}
-                    onClick={() => openProductSelection(item)}
+                    onClick={() => onAddToCart(item)}
                 >
                     <Plus size={16} /> Add
                 </button>
@@ -581,7 +581,14 @@ ${info}`.trim();
                                         key={item.id}
                                         item={item}
                                         isOpen={isOpen}
-                                        openProductSelection={openProductSelection}
+                                        onAddToCart={(item) => {
+                                            const firstVariation = (item.variations || []).find(v => !v.disabled);
+                                            addToCart(item, {
+                                                variation: firstVariation || null,
+                                                flavors: [],
+                                                addons: []
+                                            });
+                                        }}
                                     />
                                 ))}
                             </div>
