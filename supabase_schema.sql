@@ -7,7 +7,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- 1. Store Settings Table
 CREATE TABLE IF NOT EXISTS store_settings (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-    store_name TEXT NOT NULL DEFAULT 'Ligñia Resto',
+    store_name TEXT NOT NULL DEFAULT 'Ligñia',
     address TEXT,
     contact TEXT,
     logo_url TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS store_settings (
     open_time TIME DEFAULT '10:00',
     close_time TIME DEFAULT '23:00',
     manual_status TEXT DEFAULT 'auto',
-    hero_title TEXT DEFAULT 'Ligñia Resto',
+    hero_title TEXT DEFAULT 'Ligñia',
     hero_subtitle TEXT DEFAULT 'Experience the ultimate taste of premium dining.',
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

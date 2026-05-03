@@ -88,7 +88,7 @@ const AdminDashboard = () => {
             manual_status: 'auto', // auto, open, closed
             open_time: '10:00',
             close_time: '23:00',
-            store_name: 'Ligña Resto',
+            store_name: 'Ligña',
             address: 'Your Address Here',
             contact: '09XX XXX XXXX',
             logo_url: '',
@@ -1015,8 +1015,7 @@ const AdminDashboard = () => {
                         )}
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column' }}>
-                        <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#000', lineHeight: 1, letterSpacing: '-0.5px' }}>Ligña Resto</span>
-                        <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: '#000', fontWeight: 700, letterSpacing: '1px', marginTop: '2px' }}>Admin Dash</span>
+                        <span style={{ fontSize: '0.65rem', textTransform: 'uppercase', color: '#000', fontWeight: 700, letterSpacing: '1px' }}>Admin Dash</span>
                     </div>
                 </div>
 
@@ -1251,8 +1250,8 @@ const StoreGeneralSettings = ({ storeSettings, setStoreSettings, showMessage, co
                         </h3>
                         <div style={{ display: 'grid', gap: '15px' }}>
                             <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Store Name</label><input name="storeName" defaultValue={storeSettings.store_name} style={inputStyle} /></div>
-                            <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Hero Title</label><input name="heroTitle" defaultValue={storeSettings.hero_title || 'Ligña Resto'} style={inputStyle} /></div>
-                            <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Hero Subtitle</label><input name="heroSubtitle" defaultValue={storeSettings.hero_subtitle || 'Experience the ultimate taste of premium dining at Ligña Resto.'} style={inputStyle} /></div>
+                            <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Hero Title</label><input name="heroTitle" defaultValue={storeSettings.hero_title || 'Ligña'} style={inputStyle} /></div>
+                            <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Hero Subtitle</label><input name="heroSubtitle" defaultValue={storeSettings.hero_subtitle || 'Experience the ultimate taste of premium dining at Ligña.'} style={inputStyle} /></div>
                             <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Address</label><input name="address" defaultValue={storeSettings.address} style={inputStyle} /></div>
                             <div><label style={{ display: 'block', fontSize: '0.9rem', marginBottom: '8px', fontWeight: 600 }}>Contact Number</label><input name="contact" defaultValue={storeSettings.contact} style={inputStyle} /></div>
                         </div>

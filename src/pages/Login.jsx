@@ -14,8 +14,8 @@ const Login = () => {
         e.preventDefault();
         setError('');
 
-        // Developer Bypass: Allow login with admin@lignaresto.com / ligna2026 if Supabase users aren't setup yet
-        if (email === 'admin@lignaresto.com' && password === 'ligna2026') {
+        // Developer Bypass: Allow login with admin@ligna.com / ligna2026 if Supabase users aren't setup yet
+        if (email === 'admin@ligna.com' && password === 'ligna2026') {
             console.log('Developer bypass used');
             localStorage.setItem('admin_bypass', 'true');
             // Refresh page to trigger context update or navigate directly
@@ -36,15 +36,15 @@ const Login = () => {
     };
 
     return (
-        <div className="login-page" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f5f5', padding: '20px' }}>
-            <div style={{ maxWidth: '450px', width: '100%', background: '#ffffff', padding: '50px 40px', borderRadius: '2px', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.1)', border: '1px solid #eee' }}>
-                <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: '#000', marginBottom: '15px' }}>
+        <div className="login-page" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--bg-dark)', padding: '20px' }}>
+            <div style={{ maxWidth: '480px', width: '100%', background: 'var(--white)', padding: '60px 48px', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)', border: '1px solid var(--border-light)' }} className="fade-in">
+                <div style={{ textAlign: 'center', marginBottom: '48px' }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', color: 'var(--accent)', marginBottom: '24px', background: 'var(--bg)', padding: '8px 16px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-light)' }}>
                         <Lock size={18} />
-                        <span style={{ fontWeight: 800, textTransform: 'uppercase', fontSize: '0.8rem', letterSpacing: '1.5px' }}>Admin Portal</span>
+                        <span style={{ fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '2px' }}>Admin Portal</span>
                     </div>
-                    <h1 style={{ fontSize: '2.5rem', margin: '0 0 10px 0', color: '#000', fontWeight: 800 }}>Welcome Back</h1>
-                    <p style={{ color: 'var(--text-muted)', fontWeight: 500 }}>Sign in to manage Ligña Resto.</p>
+                    <h1 style={{ fontSize: '3rem', margin: '0 0 16px 0', color: 'var(--primary-dark)', fontWeight: 800 }}>Welcome Back</h1>
+                    <p style={{ color: 'var(--text-muted)', fontWeight: 500, fontSize: '1.1rem' }}>Enter your credentials to manage Ligña.</p>
                 </div>
 
                 {error && (
@@ -55,32 +55,32 @@ const Login = () => {
                 )}
 
                 <form onSubmit={handleLogin}>
-                    <div className="form-group" style={{ marginBottom: '20px' }}>
-                        <label style={{ display: 'block', marginBottom: '10px', fontWeight: 700, fontSize: '0.9rem', color: '#444' }}>Email Address</label>
+                    <div className="form-group" style={{ marginBottom: '24px' }}>
+                        <label style={{ display: 'block', marginBottom: '10px', fontWeight: 700, fontSize: '0.9rem', color: 'var(--primary-dark)' }}>Email Address</label>
                         <div style={{ position: 'relative' }}>
-                            <User size={18} style={{ position: 'absolute', left: '18px', top: '50%', transform: 'translateY(-50%)', color: '#aaa' }} />
+                            <User size={18} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                             <input
                                 type="email"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                placeholder="admin@lignaresto.com"
-                                style={{ width: '100%', padding: '15px 15px 15px 50px', borderRadius: '2px', border: '1px solid #eee', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', background: '#f9f9f9', color: '#000', fontWeight: 500 }}
+                                placeholder="admin@ligna.com"
+                                style={{ width: '100%', padding: '16px 20px 16px 56px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', fontSize: '1rem', outline: 'none', transition: 'var(--transition)', background: 'var(--bg)', color: 'var(--text)', fontWeight: 500 }}
                             />
                         </div>
                     </div>
 
-                    <div className="form-group" style={{ marginBottom: '25px' }}>
-                        <label style={{ display: 'block', marginBottom: '10px', fontWeight: 700, fontSize: '0.9rem', color: '#444' }}>Password</label>
+                    <div className="form-group" style={{ marginBottom: '32px' }}>
+                        <label style={{ display: 'block', marginBottom: '10px', fontWeight: 700, fontSize: '0.9rem', color: 'var(--primary-dark)' }}>Password</label>
                         <div style={{ position: 'relative' }}>
-                            <Lock size={18} style={{ position: 'absolute', left: '18px', top: '50%', transform: 'translateY(-50%)', color: '#aaa' }} />
+                            <Lock size={18} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
                             <input
                                 type="password"
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
-                                style={{ width: '100%', padding: '15px 15px 15px 50px', borderRadius: '2px', border: '1px solid #eee', fontSize: '1rem', outline: 'none', transition: 'all 0.3s', background: '#f9f9f9', color: '#000', fontWeight: 500 }}
+                                style={{ width: '100%', padding: '16px 20px 16px 56px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border)', fontSize: '1rem', outline: 'none', transition: 'var(--transition)', background: 'var(--bg)', color: 'var(--text)', fontWeight: 500 }}
                             />
                         </div>
                     </div>
@@ -101,8 +101,8 @@ const Login = () => {
                         type="submit"
                         className="btn-primary"
                         style={{
-                            width: '100%', padding: '18px', border: 'none', borderRadius: '2px',
-                            fontSize: '1rem', fontWeight: 800, cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '10px', transition: 'all 0.3s'
+                            width: '100%', padding: '20px', borderRadius: 'var(--radius-md)',
+                            fontSize: '1.1rem', fontWeight: 700, justifyContent: 'center'
                         }}
                     >
                         <LogIn size={20} />

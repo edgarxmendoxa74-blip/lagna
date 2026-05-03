@@ -60,11 +60,11 @@ const normalizeItems = (items) => {
 
 // Memoized menu item component
 const MenuItem = React.memo(({ item, isOpen, openProductSelection }) => (
-    <div className="menu-item-card" style={{ opacity: item.out_of_stock ? 0.6 : 1 }}>
+    <div className="menu-item-card fade-in-up" style={{ opacity: item.out_of_stock ? 0.6 : 1 }}>
         <div className="menu-item-image-wrapper">
             <img src={item.image} alt={item.name} className="menu-item-image" />
-            {item.promo_price && <span style={{ position: 'absolute', top: '10px', left: '10px', background: '#eab308', color: '#000', padding: '4px 10px', borderRadius: '2px', fontSize: '0.7rem', fontWeight: 800 }}>PROMO</span>}
-            {item.out_of_stock && <span style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.4)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, borderRadius: '2px' }}>OUT OF STOCK</span>}
+            {item.promo_price && <span style={{ position: 'absolute', top: '16px', left: '16px', background: 'var(--accent)', color: 'var(--primary-dark)', padding: '6px 14px', borderRadius: 'var(--radius-full)', fontSize: '0.7rem', fontWeight: 800, zIndex: 1, boxShadow: 'var(--shadow-sm)' }}>PROMO</span>}
+            {item.out_of_stock && <span style={{ position: 'absolute', inset: 0, background: 'rgba(44,30,20,0.6)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, zIndex: 2, backdropFilter: 'blur(4px)' }}>OUT OF STOCK</span>}
         </div>
         <div className="menu-item-info">
             <h3 className="menu-item-name">{item.name}</h3>
@@ -73,8 +73,8 @@ const MenuItem = React.memo(({ item, isOpen, openProductSelection }) => (
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                     {item.promo_price ? (
                         <>
-                            <span style={{ textDecoration: 'line-through', color: 'var(--text-muted)', fontSize: '0.8rem' }}>₱{item.price}</span>
-                            <span className="menu-item-price" style={{ color: 'var(--primary)' }}>₱{item.promo_price}</span>
+                            <span style={{ textDecoration: 'line-through', color: 'var(--text-muted)', fontSize: '0.85rem' }}>₱{item.price}</span>
+                            <span className="menu-item-price">₱{item.promo_price}</span>
                         </>
                     ) : (
                         <span className="menu-item-price">₱{item.price}</span>
@@ -84,9 +84,8 @@ const MenuItem = React.memo(({ item, isOpen, openProductSelection }) => (
                     className="btn-primary"
                     disabled={item.out_of_stock || !isOpen}
                     onClick={() => openProductSelection(item)}
-                    style={{ padding: '6px 12px', fontSize: '0.75rem', opacity: (item.out_of_stock || !isOpen) ? 0.5 : 1 }}
                 >
-                    <Plus size={14} style={{ marginRight: '5px' }} /> Add to Cart
+                    <Plus size={16} /> Add
                 </button>
             </div>
         </div>
@@ -132,12 +131,12 @@ const Home = () => {
             manual_status: 'auto',
             open_time: '10:00',
             close_time: '23:00',
-            store_name: 'Ligña Resto',
+            store_name: 'Ligña',
             address: 'Your Address Here',
             contact: '09XX XXX XXXX',
             logo_url: '/logo.png',
-            hero_title: 'Ligña Resto',
-            hero_subtitle: 'Experience the authentic taste of premium dining at Ligña Resto. From our kitchen to your table, we serve excellence in every bite. Fresh, flavorful, and unforgettable.',
+            hero_title: 'Ligña',
+            hero_subtitle: 'Experience the authentic taste of premium dining at Ligña. From our kitchen to your table, we serve excellence in every bite. Fresh, flavorful, and unforgettable.',
             banner_images: [
                 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1200&q=80',
                 'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80',
@@ -149,8 +148,8 @@ const Home = () => {
             ...fallback,
             ...saved,
             // Ensure the name is fixed even if localStorage has the old one
-            store_name: (saved.store_name === 'Ligna Resto' || !saved.store_name) ? fallback.store_name : saved.store_name,
-            hero_title: (saved.hero_title === 'Ligna Resto' || !saved.hero_title) ? fallback.hero_title : saved.hero_title,
+            store_name: (saved.store_name === 'Ligna' || !saved.store_name) ? fallback.store_name : saved.store_name,
+            hero_title: (saved.hero_title === 'Ligna' || !saved.hero_title) ? fallback.hero_title : saved.hero_title,
             banner_images: (saved.banner_images && saved.banner_images.length > 0) ? saved.banner_images : fallback.banner_images
         };
     });
@@ -456,27 +455,24 @@ ${info}`.trim();
                 </div>
             )}
 
-            <header className="app-header">
+            <header className="app-header glass">
                 <div className="container header-container">
                     <Link to="/" className="brand">
-                        <img src={storeSettings.logo_url || "/logo.png"} alt={`${storeSettings.store_name} Logo`} style={{ height: '42px', width: '42px', objectFit: 'cover', borderRadius: '50%' }} />
-                        <div className="brand-text">
-                            <span className="brand-name" style={{ color: 'var(--primary)' }}>Ligña Resto</span>
-                        </div>
+                        <img src={storeSettings.logo_url || "/logo.png"} alt={`${storeSettings.store_name} Logo`} style={{ height: '48px', width: '48px' }} />
                     </Link>
 
-                    <nav className="header-nav" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                        <Link to="/contact" className="btn-primary" style={{ background: '#eab308', color: '#000', textDecoration: 'none', display: 'flex', alignItems: 'center' }}>Contact</Link>
-                        <button className="btn-primary" onClick={() => setIsCartOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: '6px', marginLeft: '8px' }}>
-                            <ShoppingBag size={16} />
-                            <span>({cartCount})</span>
+                    <nav className="header-nav" style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
+                        <Link to="/contact" className="nav-link">Contact</Link>
+                        <button className="btn-primary" onClick={() => setIsCartOpen(true)}>
+                            <ShoppingBag size={18} />
+                            <span>Cart ({cartCount})</span>
                         </button>
                     </nav>
                 </div>
             </header>
 
             {/* Sticky Category Slider */}
-            <div className="category-slider-wrapper">
+            <div className="category-slider-wrapper glass">
                 <div className="container">
                     <div className="category-slider">
                         <button
@@ -486,7 +482,7 @@ ${info}`.trim();
                                 document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }}
                         >
-                            All
+                            All Offerings
                         </button>
                         {categories.map(cat => (
                             <button
@@ -507,9 +503,12 @@ ${info}`.trim();
             {/* Hero Section */}
             <section className="hero-section">
                 <div className="container hero-split">
-                    <div className="hero-content">
-                        <h1 style={{ color: 'var(--primary)' }}>{storeSettings.hero_title || 'Ligña Resto'}</h1>
-                        <p style={{ color: 'var(--primary-light)' }}>{storeSettings.hero_subtitle || 'Experience the authentic taste of premium dining at Ligña Resto. From our kitchen to your table, we serve excellence in every bite. Fresh, flavorful, and unforgettable.'}</p>
+                    <div className="hero-content fade-in">
+                        <h1>{storeSettings.hero_title || 'Ligña'}</h1>
+                        <p>{storeSettings.hero_subtitle || 'Experience the authentic taste of premium dining at Ligña. From our kitchen to your table, we serve excellence in every bite.'}</p>
+                        <button className="btn-primary" style={{ padding: '16px 40px', fontSize: '1.1rem' }} onClick={() => document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })}>
+                            Explore Menu <ChevronRight size={20} />
+                        </button>
                     </div>
                     <div className="hero-image-container">
                         {(storeSettings.banner_images || []).map((url, i) => (
@@ -554,10 +553,11 @@ ${info}`.trim();
             </section>
 
 
-            <main className="container" id="menu" style={{ padding: '40px 0' }}>
-                <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-                    <h2 style={{ fontSize: '3rem', marginBottom: '0px', color: 'var(--primary)' }}>Menu</h2>
-                    <p style={{ color: 'var(--text-muted)', marginTop: '-8px' }}>order here</p>
+            <main className="container" id="menu" style={{ padding: '100px 0' }}>
+                <div style={{ textAlign: 'center', marginBottom: '80px' }} className="fade-in-up">
+                    <h2 style={{ fontSize: '4rem', marginBottom: '12px', color: 'var(--primary-dark)' }}>Our Menu</h2>
+                    <div style={{ width: '80px', height: '4px', background: 'var(--accent)', margin: '0 auto 24px', borderRadius: '2px' }}></div>
+                    <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>Handcrafted with Love</p>
                 </div>
 
 
